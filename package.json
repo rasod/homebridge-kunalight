@@ -1,17 +1,17 @@
 {
   "name": "homebridge-kunalight",
-  "version": "0.0.1",
-  "description": "Kuna plugin for homebridge: https://github.com/nfarina/homebridge",
+  "version": "0.9",
+  "description": "Homebridge plugin to control the light found on the Kuna/Maximus Smart Security Light",
   "license": "ISC",
   "keywords": [
     "homebridge-plugin"
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/example/homebridge.git"
+    "url": "https://github.com/rasod/homebridge-kunalight.git"
   },
   "bugs": {
-    "url": "http://github.com/example/homebridge/issues"
+    "url": "https://github.com/rasod/homebridge-kunalight/issues"
   },
   "engines": {
     "node": ">=0.12.0",
