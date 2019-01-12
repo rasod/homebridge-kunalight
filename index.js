@@ -13,7 +13,7 @@ function KunaAccessory(log, config) {
 	this.name = config["name"];
 	this.email = config["email"];
 	this.password = config["password"];
-	this.serial = config["serial"];
+	this.serial = config["serial"].toUpperCase();
 	this.pollingInterval = Number(config["polling"] || 300);
 	this.authToken = "";
 	this.authURL = "https://server.kunasystems.com/api/v1/account/auth/";
@@ -51,6 +51,7 @@ KunaAccessory.prototype.getAuthToken = function(){
 
 KunaAccessory.prototype.getState = function(callback) {
 	this.log("Getting current state...");
+	this.log.debug(this.statusURL);
 	
 	request.get({
 		url: this.statusURL,
@@ -81,6 +82,7 @@ KunaAccessory.prototype.getState = function(callback) {
   
 KunaAccessory.prototype.setState = function(state, callback) {
 	this.log("Setting State...");
+	this.log.debug(this.statusURL);
 	
 	request({
 		url: this.statusURL,
