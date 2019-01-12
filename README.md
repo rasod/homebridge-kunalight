@@ -14,8 +14,9 @@
     {
         "accessory": "Kuna",
         "name": "Front Door",
-        "lock_id": "your-lock-id",
-        "api_token" : "your-lockitron-api-access-token"
+        "email": "",
+        "password" : "",
+		"serial":""
     }
   ]
 }
