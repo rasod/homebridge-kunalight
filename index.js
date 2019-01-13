@@ -14,7 +14,7 @@ function KunaAccessory(log, config) {
 	this.email = config["email"];
 	this.password = config["password"];
 	this.serial = config["serial"].toUpperCase();
-	this.pollingInterval = Number(config["polling"] || 300);
+	this.pollingInterval = config["polling"] === undefined ? 300 : Number(config["polling"]);
 	this.authToken = "";
 	this.authURL = "https://server.kunasystems.com/api/v1/account/auth/";
 	this.statusURL = "https://server.kunasystems.com/api/v1/cameras/" + this.serial + "/";
@@ -116,10 +116,13 @@ KunaAccessory.prototype.getServices = function() {
 	this.log.debug("getServices");
 	
 	if (this.pollingInterval > 0) {
+		this.log("Creating polling timer for every " + this.pollingInterval + " seconds");
 		this.timer = setInterval(
 			this.getState.bind(this),
 			this.pollingInterval * 1000
 		);
+	} else {
+		this.log.debug("Polling Disabled");
 	}
 
 	this.getAuthToken();
