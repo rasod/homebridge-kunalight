@@ -26,5 +26,4 @@
 * ```email``` __(required)__ Login email for the Kuna app
 * ```password``` __(required)__ Password for the Kuna app
 * ```serial``` __(required)__ Serial number of the Kuna light (can be found in the Kuna app)
-* ```name``` __(required)__ Name of light to appear in Home app
-* ```polling``` Optional value (interger) in secons for how often the lights status should be updated. Default is 300 seconds (5 minutes), set to 0 to disable polling.
+* ```polling``` Optional value (interger) in seconds for how often the lights status should be updated. Default is 300 seconds (5 minutes), set to 0 to disable polling.
