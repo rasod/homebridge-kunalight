@@ -1,6 +1,6 @@
 {
   "name": "homebridge-kunalight",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "Homebridge plugin to control the light found on the Kuna/Maximus Smart Security Light",
   "license": "ISC",
   "keywords": [
