@@ -17,7 +17,7 @@ function KunaAccessory(log, config) {
 	this.pollingInterval = config["polling"] === undefined ? 15 : Number(config["polling"]);
 	this.authToken = "";
 	this.authURL = "https://server.kunasystems.com/api/v1/account/auth/";
-	this.statusURL = "https://server.kunasystems.com/api/v1/cameras/" + this.serial + "/";
+	this.statusURL = "https://server.kunasystems.com/api/v1/cameras/" + this.serial + "/?live=1";
 
 	this.service = new Service.Lightbulb(this.name);
 	
