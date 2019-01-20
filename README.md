@@ -26,8 +26,55 @@
 }
 ```
 
+# Configuration Parameters 
+
 * ```name``` __(required)__ Name of light to appear in Home app
 * ```email``` __(required)__ Login email for the Kuna app
 * ```password``` __(required)__ Password for the Kuna app
 * ```serial``` __(required)__ Serial number of the Kuna light (can be found in the Kuna app)
 * ```polling``` Optional value (interger) in minutes for how often the lights status should be updated. Default is 15 minutes, set to 0 to disable polling.
+* ```proxyThumbnail``` Optional value, set to true to enable proxying of live thumbnail for use with [homebridge-camera-ffmpeg](https://github.com/KhaosT/homebridge-camera-ffmpeg)
+* ```proxyPort``` Optional value (default 3000) set to the port that the proxyed thumbnail image will be served on. If you have multiple cameras each will require their own port.
+
+# Proxying Thumbnail
+
+If you enable the Proxy Thumbnail option ```"proxyThumbnail":true``` this will allow you to setup a camera accessory using [homebridge-camera-ffmpeg](https://github.com/KhaosT/homebridge-camera-ffmpeg).
+
+__Note: This will not allow you to view the live feed from your camrea only a still image.__
+
+## Configuration Example with Image Enabled
+
+```
+{
+	"bridge": {
+		"name": "Homebridge",
+		"username":"CE:CE:CE:CE:CE:CE",
+		"port": 51826,
+		"pin": "131-25-154"
+	},
+	"accessories": [{
+		"accessory": "Kuna",
+		"name": "Front Door",
+		"email": "<email used to login to Kuna App>",
+		"password" : "<password used to login to Kuna App>",
+		"serial":"<Serial number of light found in Kuna App>",
+		"proxyThumbnail":true
+	}]
+	"platforms": [{
+		"platform": "Camera-ffmpeg",
+		"cameras": [{
+			"name": "Front Door",
+				"videoConfig": {
+					"source": "-i http://127.0.0.1:3000/thumbnail",
+					"stillImageSource": "-i http://127.0.0.1:3000/thumbnail",
+					"maxStreams": 1,
+					"maxWidth": 1280,
+					"maxHeight": 720,
+					"maxFPS": 30
+				}
+			}
+		]
+	}]
+}
+
+```
