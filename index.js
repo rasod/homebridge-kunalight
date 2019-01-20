@@ -1,4 +1,7 @@
 var request = require("request");
+var proxy = require('express-http-proxy');
+var app = require('express')();
+
 var Service, Characteristic;
 
 module.exports = function(homebridge) {
@@ -14,10 +17,13 @@ function KunaAccessory(log, config) {
 	this.email = config["email"];
 	this.password = config["password"];
 	this.serial = config["serial"].toUpperCase();
+	this.proxyThumbnail = config["proxyThumbnail"];
+	this.proxyPort = config["proxyPort"] || 3000;
 	this.pollingInterval = config["polling"] === undefined ? 15 : Number(config["polling"]);
 	this.authToken = "";
 	this.authURL = "https://server.kunasystems.com/api/v1/account/auth/";
 	this.statusURL = "https://server.kunasystems.com/api/v1/cameras/" + this.serial + "/?live=1";
+	this.proxyStarted = false;
 
 	this.service = new Service.Lightbulb(this.name);
 	
@@ -40,6 +46,28 @@ KunaAccessory.prototype.getAuthToken = function(){
 		if (!error && response.statusCode === 200) {
 			this.log.debug(body);
 			this.authToken = body.token;
+			
+			if (this.proxyThumbnail && this.proxyStarted != true) {
+				this.log("Proxying Thumbnail Enabled Use URL: http://127.0.0.1:" + this.proxyPort + "/thumbnail");
+
+				app.use('/thumbnail', proxy('server.kunasystems.com', {
+					https: true,
+					proxyReqOptDecorator: function(proxyReqOpts) {
+						proxyReqOpts.headers['Authorization'] = "Token " + this.authToken;
+						return proxyReqOpts;
+					}.bind(this),
+					proxyReqPathResolver: function (req) {
+						return "/api/v1/cameras/" + this.serial + "/thumbnail/?live=0";
+				    }.bind(this)
+				}));
+
+				app.listen(this.proxyPort);
+				this.proxyStarted = true;
+
+			} else {
+				this.log.debug("Proxing Thumbnail Disabled");
+			}
+						
 			this.getState();
 		} else {
 			this.log("Error Getting Authentication Token - Please Check Login Credentials");
