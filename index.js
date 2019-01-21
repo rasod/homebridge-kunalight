@@ -97,7 +97,7 @@ KunaAccessory.prototype.getState = function(callback) {
 			if (typeof callback !== 'undefined') callback(null, state);
 
 		} else {
-			this.log.debug("Response Status Code: " + response.statusCode);
+			this.log("Error Getting State - Response Status Code: " + response.statusCode);
 			this.log.debug("Response Body" + body);
 			if (response.statusCode === 401) {
 				console.log("Authorization Token Expired Getting New One");
