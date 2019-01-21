@@ -103,7 +103,7 @@ KunaAccessory.prototype.getState = function(callback) {
 				console.log("Authorization Token Expired Getting New One");
 				this.getAuthToken();
 			}
-			if (typeof callback !== 'undefined') callback(err);
+			if (typeof callback !== 'undefined') callback(error);
 		}
 	}.bind(this));
 }
