@@ -129,13 +129,13 @@ KunaAccessory.prototype.setState = function(state, callback) {
 			if (typeof callback !== 'undefined') callback(null, state);
 
 		} else {
-			this.log.debug("Response Status Code: " + response.statusCode);
+			this.log("Error Setting State - Response Status Code: " + response.statusCode);
 			this.log.debug("Response Body" + body);
 			if (response.statusCode === 401) {
 				console.log("Authorization Token Expired Getting New One");
 				this.getAuthToken();
 			}
-			if (typeof callback !== 'undefined') callback(err);
+			if (typeof callback !== 'undefined') callback(error);
 		}
 	}.bind(this))	
 }
