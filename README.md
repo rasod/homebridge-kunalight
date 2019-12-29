@@ -65,8 +65,8 @@ __Note: This will not allow you to view the live feed from your camrea only a st
 		"cameras": [{
 			"name": "Front Door",
 				"videoConfig": {
-					"source": "-i http://127.0.0.1:3000/thumbnail",
-					"stillImageSource": "-i http://127.0.0.1:3000/thumbnail",
+					"source": "-i http://127.0.0.1:3000/<CAMERA SERIAL NUMBER>",
+					"stillImageSource": "-i http://127.0.0.1:3000/<CAMERA SERIAL NUMBER>",
 					"maxStreams": 1,
 					"maxWidth": 1280,
 					"maxHeight": 720,

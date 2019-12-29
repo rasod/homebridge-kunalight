@@ -48,9 +48,9 @@ KunaAccessory.prototype.getAuthToken = function(){
 			this.authToken = body.token;
 			
 			if (this.proxyThumbnail && this.proxyStarted != true) {
-				this.log("Proxying Thumbnail Enabled Use URL: http://127.0.0.1:" + this.proxyPort + "/thumbnail");
+				this.log("Proxying Thumbnail Enabled Use URL: http://127.0.0.1:" + this.proxyPort + "/" + this.serial);
 
-				app.use('/thumbnail', proxy('server.kunasystems.com', {
+				app.use('/'+this.serial, proxy('server.kunasystems.com', {
 					https: true,
 					proxyReqOptDecorator: function(proxyReqOpts) {
 						proxyReqOpts.headers['Authorization'] = "Token " + this.authToken;
