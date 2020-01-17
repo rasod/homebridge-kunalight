@@ -38,7 +38,7 @@
 
 # Proxying Thumbnail
 
-If you enable the Proxy Thumbnail option ```"proxyThumbnail":true``` this will allow you to setup a camera accessory using [homebridge-camera-ffmpeg](https://github.com/KhaosT/homebridge-camera-ffmpeg).
+If you enable the Proxy Thumbnail option ```"proxyThumbnail":true``` this will allow you to setup a camera accessory using [homebridge-camera-ffmpeg](https://github.com/KhaosT/homebridge-camera-ffmpeg). Make sure to name the camera different from the light.
 
 __Note: This will not allow you to view the live feed from your camrea only a still image.__
 
@@ -63,13 +63,13 @@ __Note: This will not allow you to view the live feed from your camrea only a st
 	"platforms": [{
 		"platform": "Camera-ffmpeg",
 		"cameras": [{
-			"name": "Front Door",
+			"name": "Front Door Camera",
 				"videoConfig": {
 					"source": "-i http://127.0.0.1:3000/<CAMERA SERIAL NUMBER>",
 					"stillImageSource": "-i http://127.0.0.1:3000/<CAMERA SERIAL NUMBER>",
 					"maxStreams": 1,
-					"maxWidth": 1280,
-					"maxHeight": 720,
+					"maxWidth": 640,
+					"maxHeight": 360,
 					"maxFPS": 30
 				}
 			}
