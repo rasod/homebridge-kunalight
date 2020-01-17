@@ -1,0 +1,58 @@
+{
+  "plugin_alias": "Kuna",
+  "pluginType": "accessory",
+  "singular": false,
+  "schema": {
+    "title": "Kuna Secuirty Light",
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "required": true,
+        "default": "Kuna Light",
+        "description": "Name of light to appear in Home app"
+      },
+      "email": {
+        "title": "e-Mail",
+        "type": "string",
+        "required": true,
+        "format": "email",
+        "description": "e-Mail used to login to Kuna App"
+      },
+      "password": {
+        "title": "Password",
+        "type": "string",
+        "required": true,
+        "description": "Password used to login to Kuna App",
+        "options": {
+          "hidden": true
+        }
+      },
+      "serial": {
+        "title": "Serial Number",
+        "type": "string",
+        "required": true,
+        "description": "Serial number of light found in Kuna App"
+      },
+      "polling": {
+        "title": "Polling Interval",
+        "type": "integer",
+        "default": 15,
+        "description": "Optional value in minutes for how often the lights status should be updated. Default is 15 minutes, set to 0 to disable polling."
+      },
+      "proxyThumbnail": {
+        "title": "Proxy Thumbnail",
+        "type": "boolean",
+        "default": false,
+        "description": "Enable proxying of live thumbnail for use with homebridge-camera-ffmpeg"
+      },
+      "proxyPort": {
+        "title": "Proxy Thumbnail Port",
+        "type": "number",
+        "default": 3000,
+        "description": "Optional value (default 3000) set to the port that the proxyed thumbnail image will be served on. If you have multiple cameras each will require their own port."
+      }
+    }
+  }
+}
