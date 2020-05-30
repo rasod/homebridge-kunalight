@@ -30,7 +30,14 @@ function KunaAccessory(log, config) {
 	this.service
 		.getCharacteristic(Characteristic.On)
 		.on('get', this.getState.bind(this))
-		.on('set', this.setState.bind(this));	
+		.on('set', this.setState.bind(this));
+		
+	this.informationService = new Service.AccessoryInformation();
+	this.informationService
+		.setCharacteristic(Characteristic.Manufacturer, 'HomeBridge')
+		.setCharacteristic(Characteristic.Model, 'Kuna')
+		.setCharacteristic(Characteristic.SerialNumber, this.serial);
+
 }
 
 KunaAccessory.prototype.getAuthToken = function(){
