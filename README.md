@@ -1,3 +1,6 @@
+> [!CAUTION]
+> This project is no longer maintained, I do not have access to any Kuna devices.
+
 # homebridge-kunalight
 
 [Homebridge](https://github.com/nfarina/homebridge) plugin to control the light found on the [Kuna/Maximus Smart Security Light](https://getkuna.com). Can also be used with [homebridge-camera-ffmpeg](https://github.com/KhaosT/homebridge-camera-ffmpeg) to create a camera accessory for viewing thumbnail from camera. __Live camera feed not supported.__
